@@ -124,24 +124,24 @@ namespace WindowsFormsApp1
             if (fractal_name == "Н-фрактал")
             {
                 if (depth < 8)
-                    new H_Fractal(resize * 270 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), Color.Black, Color.Black, depth)
-                        .Draw(center, ref graph, colorList);
+                    new H_Fractal(resize * 270 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), pictureBox1.BackColor, pictureBox2.BackColor, depth)
+                        .Draw(center, ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 7.", "Упс!");
             }
             else if (fractal_name == "С-Кривая Леви")
             {
                 if (depth < 19)
-                    new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), Color.Black, Color.Black, depth)
-                        .Draw(new Point(center.x, center.y + 50), ref graph, colorList);
+                    new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), pictureBox1.BackColor, pictureBox2.BackColor, depth)
+                        .Draw(new Point(center.x, center.y + 50), ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 18.", "Упс!");
             }
             else
             {
                 if (depth < 8)
-                    new T_Fractal(resize * 1200 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), Color.Black, Color.Black, depth)
-                        .Draw(new Point(center.x, center.y + 40), ref graph, colorList);
+                    new T_Fractal(resize * 1200 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), pictureBox1.BackColor, pictureBox2.BackColor, depth)
+                        .Draw(new Point(center.x, center.y + 40), ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится.\nМаксимальная возможная глубина - 7.", "Упс!");
             }

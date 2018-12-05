@@ -26,7 +26,15 @@ namespace WindowsFormsApp1
             maxLevel = d;
         }
 
-        public virtual void Draw(Point center, ref Graphics g, List<Color> l) { }
+        public virtual void Draw(Point center, ref Graphics g) { }
+
+        protected Color ThisColor()
+        {
+            int dR = (endColor.R - startColor.R) / maxLevel;
+            int dG = (endColor.G - startColor.G) / maxLevel;
+            int dB = (endColor.B - startColor.B) / maxLevel;
+            return Color.FromArgb(startColor.R + dR * currentLevel, startColor.G + dG * currentLevel, startColor.B + dB * currentLevel);
+        }
 
     }
 }

@@ -14,12 +14,12 @@ namespace WindowsFormsApp1
 
         public C_Fractal(float l, Color s, Color e, int d) : base(l, s, e, d) { }
 
-        public override void Draw(Point center, ref Graphics g, List<Color> l)
+        public override void Draw(Point center, ref Graphics g)
         {
-            _Draw(center, ref g, 2, l);
+            _Draw(center, ref g, 2);
         }
 
-        public void _Draw(Point center, ref Graphics g, int r, List<Color> l)
+        public void _Draw(Point center, ref Graphics g, int r)
         {
             currentLevel++;
             size *= (float)(Math.Sqrt(2) / 2);
@@ -30,66 +30,66 @@ namespace WindowsFormsApp1
                 switch (r)
                 {
                     case 0: //correct
-                        _Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1, l);
+                        _Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7, l);
+                        _Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 1: //correct
-                        _Draw(new Point(center.x, center.y - size * sqrt), ref g, 2, l);
+                        _Draw(new Point(center.x, center.y - size * sqrt), ref g, 2);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x - size * sqrt, center.y), ref g, 0, l);
+                        _Draw(new Point(center.x - size * sqrt, center.y), ref g, 0);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 2: //correct
-                        _Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3, l);
+                        _Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1, l);
+                        _Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 3: //correct
-                        _Draw(new Point(center.x + size * sqrt, center.y), ref g, 4, l);
+                        _Draw(new Point(center.x + size * sqrt, center.y), ref g, 4);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x, center.y - size * sqrt), ref g, 2, l);
+                        _Draw(new Point(center.x, center.y - size * sqrt), ref g, 2);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 4: //correct
-                        _Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5, l);
+                        _Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3, l);
+                        _Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 5: //correct
-                        _Draw(new Point(center.x, center.y + size * sqrt), ref g, 6, l);
+                        _Draw(new Point(center.x, center.y + size * sqrt), ref g, 6);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x + size * sqrt, center.y), ref g, 4, l);
+                        _Draw(new Point(center.x + size * sqrt, center.y), ref g, 4);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 6: //correct
-                        _Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7, l);
+                        _Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5, l);
+                        _Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 7: //correct
-                        _Draw(new Point(center.x - size * sqrt, center.y), ref g, 0, l);
+                        _Draw(new Point(center.x - size * sqrt, center.y), ref g, 0);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x, center.y + size * sqrt), ref g, 6, l);
+                        _Draw(new Point(center.x, center.y + size * sqrt), ref g, 6);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
@@ -122,7 +122,7 @@ namespace WindowsFormsApp1
                         second = new Point(center.x - size * 0.5f, center.y - size * 0.5f);
                         break;
                 }
-                Pen p = new Pen(l[this.currentLevel - 1]);
+                Pen p = new Pen(ThisColor());
                 g.DrawLine(p, first.x, first.y, second.x, second.y);
             }
         }
