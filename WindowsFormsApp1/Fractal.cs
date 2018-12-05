@@ -28,13 +28,15 @@ namespace WindowsFormsApp1
 
         public virtual void Draw(Point center, ref Graphics g) { }
 
-        protected Color ThisColor()
+        protected Color ThisColor
         {
-            int dR = (endColor.R - startColor.R) / maxLevel;
-            int dG = (endColor.G - startColor.G) / maxLevel;
-            int dB = (endColor.B - startColor.B) / maxLevel;
-            return Color.FromArgb(startColor.R + dR * currentLevel, startColor.G + dG * currentLevel, startColor.B + dB * currentLevel);
+            get
+            {
+                int dR = (endColor.R - startColor.R) / maxLevel;
+                int dG = (endColor.G - startColor.G) / maxLevel;
+                int dB = (endColor.B - startColor.B) / maxLevel;
+                return Color.FromArgb(startColor.R + dR * currentLevel, startColor.G + dG * currentLevel, startColor.B + dB * currentLevel);
+            }
         }
-
     }
 }

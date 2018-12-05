@@ -11,14 +11,12 @@ namespace WindowsFormsApp1
     {
         public string Name { get; }
         public int Depth { get; }
-        public List<Color> Colors { get; set; }
         public Point Center { get; set; }
 
-        public FractalData(string n, int d, List<Color> l, Point c)
+        public FractalData(string n, int d, Point c)
         {
             Name = n;
             Depth = d;
-            Colors = l;
             Center = c;
         }
     }

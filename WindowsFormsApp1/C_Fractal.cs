@@ -122,7 +122,7 @@ namespace WindowsFormsApp1
                         second = new Point(center.x - size * 0.5f, center.y - size * 0.5f);
                         break;
                 }
-                Pen p = new Pen(ThisColor());
+                Pen p = new Pen(ThisColor);
                 g.DrawLine(p, first.x, first.y, second.x, second.y);
             }
         }

@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
                 size *= 2;
             }
             currentLevel--;
-            Pen p = new Pen(ThisColor());
+            Pen p = new Pen(ThisColor);
             g.DrawLine(p, c.x - size, c.y, c.x + size, c.y);
             g.DrawLine(p, c.x - size, c.y - size, c.x - size, c.y + size);
             g.DrawLine(p, c.x + size, c.y - size, c.x + size, c.y + size);

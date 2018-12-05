@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
                 size *= 2;
             }
             currentLevel--;
-            Pen p = new Pen(ThisColor());
+            Pen p = new Pen(ThisColor);
             Point up = new Point(c.x, c.y - (float)(size * Math.Sqrt(3) / 3));
             Point left = new Point(c.x - size / 2, c.y + (float)(size * Math.Sqrt(3) / 6));
             Point right = new Point(c.x + size / 2, c.y + (float)(size * Math.Sqrt(3) / 6));

@@ -42,13 +42,6 @@ namespace WindowsFormsApp1
             Draw();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            defaultBG = defaultBG == Color.White ? Color.Black : Color.White;
-            graph.Clear(defaultBG);
-            picture.Image = bmp;
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             this.MinimumSize = new Size(690, 520);
@@ -106,9 +99,8 @@ namespace WindowsFormsApp1
                 }
                 if (flag)
                 {
-                    List<Color> colorList = CreateColorList(pictureBox1.BackColor, pictureBox2.BackColor, depth);
                     Point center = new Point(picture.Width / 2, picture.Height / 2);
-                    data = new FractalData(fractal_name, depth, colorList, center);
+                    data = new FractalData(fractal_name, depth, center);
                     _Draw();
                 }
 
@@ -119,7 +111,6 @@ namespace WindowsFormsApp1
         {
             string fractal_name = data.Name;
             int depth = data.Depth;
-            List<Color> colorList = data.Colors;
             Point center = data.Center;
             if (fractal_name == "Н-фрактал")
             {
@@ -184,7 +175,7 @@ namespace WindowsFormsApp1
                 float dx = end.x - start.x;
                 float dy = end.y - start.y;
                 data = new FractalData
-                    (data.Name, data.Depth, data.Colors, new Point(data.Center.x + dx, data.Center.y + dy));
+                    (data.Name, data.Depth, new Point(data.Center.x + dx, data.Center.y + dy));
                 graph.Clear(defaultBG);
                 _Draw();
                 start = null;
