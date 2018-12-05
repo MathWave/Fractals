@@ -15,7 +15,6 @@ namespace WindowsFormsApp1
 
         Bitmap bmp;
         Graphics graph;
-        Pen pen;
         Color defaultBG;
         Color defaultPen;
         bool isEmpty;
@@ -29,7 +28,6 @@ namespace WindowsFormsApp1
             InitializeComponent();
             bmp = new Bitmap(picture.Width, picture.Height);
             graph = Graphics.FromImage(bmp);
-            pen = new Pen(Color.Black);
             defaultBG = Color.White;
             defaultPen = Color.Black;
             isEmpty = true;
@@ -108,12 +106,6 @@ namespace WindowsFormsApp1
                 }
                 if (flag)
                 {
-                    int argMin = pictureBox1.BackColor.ToArgb();
-                    if (argMin == 0)
-                        argMin = defaultPen.ToArgb();
-                    int argMax = pictureBox2.BackColor.ToArgb();
-                    if (argMax == 0)
-                        argMax = defaultPen.ToArgb();
                     List<Color> colorList = CreateColorList(pictureBox1.BackColor, pictureBox2.BackColor, depth);
                     Point center = new Point(picture.Width / 2, picture.Height / 2);
                     data = new FractalData(fractal_name, depth, colorList, center);
@@ -133,7 +125,7 @@ namespace WindowsFormsApp1
             {
                 if (depth < 8)
                     new H_Fractal(resize * 270 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), Color.Black, Color.Black, depth)
-                        .Draw(center, ref graph, pen, colorList);
+                        .Draw(center, ref graph, colorList);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 7.", "Упс!");
             }
@@ -141,7 +133,7 @@ namespace WindowsFormsApp1
             {
                 if (depth < 19)
                     new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), Color.Black, Color.Black, depth)
-                        .Draw(new Point(center.x, center.y + 50), ref graph, pen, colorList);
+                        .Draw(new Point(center.x, center.y + 50), ref graph, colorList);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 18.", "Упс!");
             }
@@ -149,7 +141,7 @@ namespace WindowsFormsApp1
             {
                 if (depth < 8)
                     new T_Fractal(resize * 1200 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 1000 / 600), Color.Black, Color.Black, depth)
-                        .Draw(new Point(center.x, center.y + 40), ref graph, pen, colorList);
+                        .Draw(new Point(center.x, center.y + 40), ref graph, colorList);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится.\nМаксимальная возможная глубина - 7.", "Упс!");
             }

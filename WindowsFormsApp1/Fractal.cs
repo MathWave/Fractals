@@ -26,7 +26,7 @@ namespace WindowsFormsApp1
             maxLevel = d;
         }
 
-        public virtual void Draw(Point center, ref Graphics g, Pen p, List<Color> l) { }
+        public virtual void Draw(Point center, ref Graphics g, List<Color> l) { }
 
     }
 }

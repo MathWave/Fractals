@@ -13,22 +13,23 @@ namespace WindowsFormsApp1
 
         public H_Fractal(float l, Color s, Color e, int d) : base(l, s, e, d) { }
 
-        public override void Draw(Point c, ref Graphics g, Pen p, List<Color> l)
+        public override void Draw(Point c, ref Graphics g, List<Color> l)
         {
             currentLevel++;
             size /= 2;
             if (currentLevel < maxLevel)
             {
-                Draw(new Point(c.x - size, c.y - size), ref g, p, l);
+                Draw(new Point(c.x - size, c.y - size), ref g, l);
                 size *= 2;
-                Draw(new Point(c.x - size, c.y + size), ref g, p, l);
+                Draw(new Point(c.x - size, c.y + size), ref g, l);
                 size *= 2;
-                Draw(new Point(c.x + size, c.y - size), ref g, p, l);
+                Draw(new Point(c.x + size, c.y - size), ref g, l);
                 size *= 2;
-                Draw(new Point(c.x + size, c.y + size), ref g, p, l);
+                Draw(new Point(c.x + size, c.y + size), ref g, l);
                 size *= 2;
             }
             currentLevel--;
+            Pen p = new Pen(l[this.currentLevel]);
             p.Color = l[this.currentLevel];
             g.DrawLine(p, c.x - size, c.y, c.x + size, c.y);
             g.DrawLine(p, c.x - size, c.y - size, c.x - size, c.y + size);
