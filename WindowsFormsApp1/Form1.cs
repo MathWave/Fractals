@@ -207,15 +207,5 @@ namespace WindowsFormsApp1
             pictureBox2.BackColor = colorDialog1.Color;
         }
 
-        List<Color> CreateColorList(Color start, Color end, int depth)
-        {
-            List<Color> list = new List<Color>();
-            int dR = (end.R - start.R) / depth;
-            int dG = (end.G - start.G) / depth;
-            int dB = (end.B - start.B) / depth;
-            for (int i = 0; i < depth; i++)
-                list.Add(Color.FromArgb(start.R + dR * i, start.G + dG * i, start.B + dB * i));
-            return list;
-        }
     }
 }
