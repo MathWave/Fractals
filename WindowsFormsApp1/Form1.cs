@@ -36,6 +36,7 @@ namespace WindowsFormsApp1
             start = null;
             resize = 1;
             PossibleToOverDraw = false;
+            colorDialog1.FullOpen = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -107,10 +108,10 @@ namespace WindowsFormsApp1
                 }
                 if (flag)
                 {
-                    int argMin = Color.FromName(textBox2.Text).ToArgb();
+                    int argMin = pictureBox1.BackColor.ToArgb();
                     if (argMin == 0)
                         argMin = defaultPen.ToArgb();
-                    int argMax = Color.FromName(textBox3.Text).ToArgb();
+                    int argMax = pictureBox2.BackColor.ToArgb();
                     if (argMax == 0)
                         argMax = defaultPen.ToArgb();
                     List<Color> colorList = new List<Color>();
@@ -214,6 +215,18 @@ namespace WindowsFormsApp1
                 data.Center = new Point(picture.Width / 2, picture.Height / 2);
                 _Draw();
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            pictureBox1.BackColor = colorDialog1.Color;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            pictureBox2.BackColor = colorDialog1.Color;
         }
     }
 }
