@@ -184,15 +184,19 @@ namespace WindowsFormsApp1
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            picture.Width = Width - 30;
-            picture.Height = Height - 120;
-            bmp = new Bitmap(picture.Width, picture.Height);
-            graph = Graphics.FromImage(bmp);
-            if (PossibleToOverDraw)
+            try
             {
-                data.Center = new Point(picture.Width / 2, picture.Height / 2);
-                _Draw();
+                picture.Width = Width - 30;
+                picture.Height = Height - 120;
+                bmp = new Bitmap(picture.Width, picture.Height);
+                graph = Graphics.FromImage(bmp);
+                if (PossibleToOverDraw)
+                {
+                    data.Center = new Point(picture.Width / 2, picture.Height / 2);
+                    _Draw();
+                }
             }
+            catch { }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
