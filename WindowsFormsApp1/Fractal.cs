@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Drawing;
 
 namespace WindowsFormsApp1
 {
@@ -32,9 +26,9 @@ namespace WindowsFormsApp1
         {
             get
             {
-                int dR = (endColor.R - startColor.R) / (maxLevel - 1);
-                int dG = (endColor.G - startColor.G) / (maxLevel - 1);
-                int dB = (endColor.B - startColor.B) / (maxLevel - 1);
+                int dR = (endColor.R - startColor.R) / maxLevel;
+                int dG = (endColor.G - startColor.G) / maxLevel;
+                int dB = (endColor.B - startColor.B) / maxLevel;
                 return Color.FromArgb(startColor.R + dR * currentLevel, startColor.G + dG * currentLevel, startColor.B + dB * currentLevel);
             }
         }
