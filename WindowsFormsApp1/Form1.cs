@@ -53,7 +53,8 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e) //Сохранение изображения
         {
             SaveFileDialog save = new SaveFileDialog();
-            save.ShowDialog();
+            if (save.ShowDialog() == DialogResult.Cancel)
+                return;
             string filename = save.FileName + ".jpg";
             bmp.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
         }
@@ -97,31 +98,34 @@ namespace WindowsFormsApp1
             }
         }
 
-        void _Draw()
+        void _Draw() //Рисуем фрактал на основе поля с данными фрактала
         {
             string fractal_name = data.Name;
             int depth = data.Depth;
             Point center = data.Center;
-            if (fractal_name == "Н-фрактал")
+            if (fractal_name == "Н-фрактал") //Рисуем Н-Фрактала
             {
-                if (depth < 8)
-                    new H_Fractal(resize * 270 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000), pictureBox1.BackColor, pictureBox2.BackColor, depth)
+                if (depth < 11)
+                    new H_Fractal(resize * 270 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000), 
+                        pictureBox1.BackColor, pictureBox2.BackColor, depth)
                         .Draw(center, ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 7.", "Упс!");
             }
-            else if (fractal_name == "С-Кривая Леви")
+            else if (fractal_name == "С-Кривая Леви") //Рисуем С-кривую Леви
             {
                 if (depth < 19)
-                    new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000), pictureBox1.BackColor, pictureBox2.BackColor, depth)
+                    new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000), 
+                        pictureBox1.BackColor, pictureBox2.BackColor, depth)
                         .Draw(new Point(center.x, center.y + 50), ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 18.", "Упс!");
             }
-            else
+            else //Рисуем треугольник серпинского
             {
                 if (depth < 8)
-                    new T_Fractal(resize * 1200 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000), pictureBox1.BackColor, pictureBox2.BackColor, depth)
+                    new T_Fractal(resize * 1200 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000),
+                        pictureBox1.BackColor, pictureBox2.BackColor, depth)
                         .Draw(new Point(center.x, center.y + 40), ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится.\nМаксимальная возможная глубина - 7.", "Упс!");
@@ -131,7 +135,7 @@ namespace WindowsFormsApp1
             PossibleToOverDraw = true;
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) //Меняем масштаб
         {
             switch(comboBox2.SelectedItem.ToString())
             {
@@ -148,16 +152,14 @@ namespace WindowsFormsApp1
                     resize = 5;
                     break;
             }
-            if (!isEmpty)
-                Draw();
         }
 
-        private void picture_MouseDown(object sender, MouseEventArgs e)
+        private void picture_MouseDown(object sender, MouseEventArgs e) //Зафиксировать точку старта
         {
             start = new Point(Cursor.Position.X, Cursor.Position.Y);
         }
 
-        private void picture_MouseUp(object sender, MouseEventArgs e)
+        private void picture_MouseUp(object sender, MouseEventArgs e) //Переместить фрактал
         {
             if (start != null && !isEmpty)
             {
@@ -172,7 +174,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e)
+        private void Form1_SizeChanged(object sender, EventArgs e) //При изменении размеров формы...
         {
             try
             {
@@ -185,19 +187,21 @@ namespace WindowsFormsApp1
                     data.Center = new Point(picture.Width / 2, picture.Height / 2);
                     _Draw();
                 }
-                throw new IndexOutOfRangeException();
             }
-            catch { }
+            catch
+            {
+                
+            }
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+         
+        private void pictureBox1_Click(object sender, EventArgs e) //Изменить стартовый цвет
         {
             colorDialog1.Color = pictureBox1.BackColor;
             colorDialog1.ShowDialog();
             pictureBox1.BackColor = colorDialog1.Color;
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e) //Изменить конечный цвет
         {
             colorDialog1.Color = pictureBox2.BackColor;
             colorDialog1.ShowDialog();
