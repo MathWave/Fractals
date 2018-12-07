@@ -7,15 +7,15 @@ namespace WindowsFormsApp1
 	public partial class Form1 : Form
 	{
 
-        Bitmap bmp;
-        Graphics graph;
-        bool isEmpty;
-        Point start;
-        FractalData data;
-        float resize;
-        bool PossibleToOverDraw;
+        Bitmap bmp; //Поле битмапа
+        Graphics graph; //Поле графа
+        bool isEmpty; //Поле является ли битмап пустым
+        Point start; //Точка начала отрисовки
+        FractalData data; //Данные фрактала
+        float resize; //Во сколько раз должен увеличиться фрактал
+        bool PossibleToOverDraw; //Возможно ли перерисовать
 
-        public Form1()
+        public Form1() //Конструктор
 		{
             InitializeComponent();
             bmp = new Bitmap(picture.Width, picture.Height);
@@ -27,22 +27,22 @@ namespace WindowsFormsApp1
             colorDialog1.FullOpen = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //При нажатии на кнопку отрисовать фрактал
         {
             Draw();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e) //При загрузке формы установить минимальный размер
         {
             this.MinimumSize = new Size(690, 520);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //При нажатии на кнопку "Очистить" очистить
         {
             Clear();
         }
 
-        void Clear()
+        void Clear() //Очистка полотна
         {
             graph.Clear(Color.White);
             picture.Image = bmp;
@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
             data = null;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //Сохранение изображения
         {
             SaveFileDialog save = new SaveFileDialog();
             save.ShowDialog();
@@ -58,17 +58,17 @@ namespace WindowsFormsApp1
             bmp.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
         }
 
-        void Draw()
+        void Draw() //Отсрисовка фрактала
         {
-            Clear();
+            Clear(); //Сначала очищаем полотно
             string fractal_name = "";
             int depth = 0;
             bool flag = true;
             try
             {
-                fractal_name = comboBox1.SelectedItem.ToString();
+                fractal_name = comboBox1.SelectedItem.ToString(); 
             }
-            catch
+            catch //Вылетает исключение если фрактал не выбран
             {
                 MessageBox.Show("Выберите фрактал!", "Ошибка!");
                 flag = false;
@@ -82,7 +82,7 @@ namespace WindowsFormsApp1
                         throw new Exception();
                 }
 
-                catch
+                catch //Вылетает исключение если некорректно ввести глубину
                 {
                     MessageBox.Show("Некорректный ввод глубины!", "Ошибка!");
                     flag = false;
@@ -185,18 +185,21 @@ namespace WindowsFormsApp1
                     data.Center = new Point(picture.Width / 2, picture.Height / 2);
                     _Draw();
                 }
+                throw new IndexOutOfRangeException();
             }
             catch { }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            colorDialog1.Color = pictureBox1.BackColor;
             colorDialog1.ShowDialog();
             pictureBox1.BackColor = colorDialog1.Color;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            colorDialog1.Color = pictureBox2.BackColor;
             colorDialog1.ShowDialog();
             pictureBox2.BackColor = colorDialog1.Color;
         }

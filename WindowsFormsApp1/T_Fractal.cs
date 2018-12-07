@@ -3,16 +3,16 @@ using System.Drawing;
 
 namespace WindowsFormsApp1
 {
-    public class T_Fractal : Fractal
+    public class T_Fractal : Fractal //класс Треугольника Серпинского
     {
 
-        public T_Fractal(float l, Color s, Color e, int d) : base(l, s, e, d) { }
+        public T_Fractal(float l, Color s, Color e, int d) : base(l, s, e, d) { } //Конструктор
 
-        public override void Draw(Point c, ref Graphics g)
+        public override void Draw(Point c, ref Graphics g) //Рисуем фрактал
         {
             currentLevel++;
             size /= 2;
-            if (currentLevel < maxLevel)
+            if (currentLevel < maxLevel) //Пока не дошли до максимальной глубины рекурсии, рисуем фракталы
             {
                 Draw(new Point(c.x, c.y - size * (float)(Math.Sqrt(3) / 6)), ref g);
                 size *= 2;

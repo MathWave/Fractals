@@ -2,16 +2,16 @@
 
 namespace WindowsFormsApp1
 {
-    public class Fractal
+    public class Fractal //Базовые класс фрактала
     {
 
-        protected float size;
-        protected Color startColor;
-        protected Color endColor;
-        protected int currentLevel;
-        protected int maxLevel;
+        protected float size; //Размер фрактала
+        protected Color startColor; //Начальный цвет (задается пользователем)
+        protected Color endColor; //Конечный цвет (задается пользователем)
+        protected int currentLevel; //текущий уровень рекурсии
+        protected int maxLevel; //максимальный уроень рекурсии
 
-        public Fractal(float l, Color s, Color e, int d)
+        public Fractal(float l, Color s, Color e, int d) //Конструктор
         {
             size = l;
             currentLevel = 0;
@@ -20,9 +20,9 @@ namespace WindowsFormsApp1
             maxLevel = d;
         }
 
-        public virtual void Draw(Point center, ref Graphics g) { }
+        public virtual void Draw(Point center, ref Graphics g) { } //Метод рисования фрактала (переопределяется)
 
-        protected Color ThisColor
+        protected Color ThisColor //Свойство, возвращающее цвет для текущего уровня рекурсии
         {
             get
             {
