@@ -35,6 +35,7 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e) //При загрузке формы установить минимальный размер
         {
             this.MinimumSize = new Size(690, 520);
+            this.MaximumSize = Screen.PrimaryScreen.Bounds.Size;
         }
 
         private void button2_Click(object sender, EventArgs e) //При нажатии на кнопку "Очистить" очистить
