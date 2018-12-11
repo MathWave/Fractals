@@ -115,9 +115,9 @@ namespace WindowsFormsApp1
             else if (fractal_name == "С-Кривая Леви") //Рисуем С-кривую Леви
             {
                 if (depth < 19)
-                    new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000), 
+                    new C_Fractal(resize * 330 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000),
                         pictureBox1.BackColor, pictureBox2.BackColor, depth)
-                        .Draw(new Point(center.x, center.y + 50), ref graph);
+                        .Draw(new Point(center.x, center.y + 50), ref graph, 2);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится!\nМаксимальная возможная глубина - 18.", "Упс!");
             }
@@ -126,7 +126,7 @@ namespace WindowsFormsApp1
                 if (depth < 8)
                     new T_Fractal(resize * 1200 * (float)Math.Sqrt((float)picture.Width * (float)picture.Height / 600000),
                         pictureBox1.BackColor, pictureBox2.BackColor, depth)
-                        .Draw(new Point(center.x, center.y + 40), ref graph);
+                        .Draw(new Point(center.x, center.y + 50), ref graph);
                 else
                     MessageBox.Show("Слишком глубокая рекурсия, не получится.\nМаксимальная возможная глубина - 7.", "Упс!");
             }

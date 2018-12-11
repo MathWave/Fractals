@@ -9,12 +9,7 @@ namespace WindowsFormsApp1
 
         public C_Fractal(float l, Color s, Color e, int d) : base(l, s, e, d) { } //Конструктор
 
-        public override void Draw(Point center, ref Graphics g) 
-        {
-            _Draw(center, ref g, 2);
-        }
-
-        public void _Draw(Point center, ref Graphics g, int r) //Рисуем фрактал
+        public override void Draw(Point center, ref Graphics g, int r) //Рисуем фрактал
         {
             currentLevel++;
             size *= (float)(Math.Sqrt(2) / 2);
@@ -25,66 +20,66 @@ namespace WindowsFormsApp1
                 switch (r) //В зависимости от угла наклона формируем новые фракталы
                 {
                     case 0: //correct
-                        _Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1);
+                        Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7);
+                        Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 1: //correct
-                        _Draw(new Point(center.x, center.y - size * sqrt), ref g, 2);
+                        Draw(new Point(center.x, center.y - size * sqrt), ref g, 2);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x - size * sqrt, center.y), ref g, 0);
+                        Draw(new Point(center.x - size * sqrt, center.y), ref g, 0);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 2: //correct
-                        _Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3);
+                        Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1);
+                        Draw(new Point(center.x - size * half, center.y - size * half), ref g, 1);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 3: //correct
-                        _Draw(new Point(center.x + size * sqrt, center.y), ref g, 4);
+                        Draw(new Point(center.x + size * sqrt, center.y), ref g, 4);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x, center.y - size * sqrt), ref g, 2);
+                        Draw(new Point(center.x, center.y - size * sqrt), ref g, 2);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 4: //correct
-                        _Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5);
+                        Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3);
+                        Draw(new Point(center.x + size * half, center.y - size * half), ref g, 3);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 5: //correct
-                        _Draw(new Point(center.x, center.y + size * sqrt), ref g, 6);
+                        Draw(new Point(center.x, center.y + size * sqrt), ref g, 6);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x + size * sqrt, center.y), ref g, 4);
+                        Draw(new Point(center.x + size * sqrt, center.y), ref g, 4);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 6: //correct
-                        _Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7);
+                        Draw(new Point(center.x - size * half, center.y + size * half), ref g, 7);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5);
+                        Draw(new Point(center.x + size * half, center.y + size * half), ref g, 5);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;
                     case 7: //correct
-                        _Draw(new Point(center.x - size * sqrt, center.y), ref g, 0);
+                        Draw(new Point(center.x - size * sqrt, center.y), ref g, 0);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
-                        _Draw(new Point(center.x, center.y + size * sqrt), ref g, 6);
+                        Draw(new Point(center.x, center.y + size * sqrt), ref g, 6);
                         currentLevel--;
                         size *= (float)Math.Sqrt(2);
                         break;

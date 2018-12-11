@@ -22,6 +22,8 @@ namespace WindowsFormsApp1
 
         public virtual void Draw(Point center, ref Graphics g) { } //Метод рисования фрактала (переопределяется)
 
+        public virtual void Draw(Point center, ref Graphics g, int r) { } //Еще один метод рисования фрактала (переопределяется)
+
         protected Color ThisColor //Свойство, возвращающее цвет для текущего уровня рекурсии
         {
             get
